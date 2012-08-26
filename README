@@ -1,0 +1,11 @@
+This script shall be a simple wrapper from a WMS to TMS.
+
+You can add this layer to OpenLayers as:
+
+    var layer = new OpenLayers.Layer.OSM(
+            "Test Layer",
+	    "http://example.com/wms_to_tms/?foo=bar&path=${z}/${x}/${y}.png",
+	    { numZoomLevels: 19, isBaseLayer: false });
+    map.addLayer(layer);
+
+All parameters (save path) will be passed to the WMS.
