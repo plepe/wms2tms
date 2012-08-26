@@ -1,4 +1,5 @@
 <?
+require("conf.php");
 Header("content-type: image/png");
 
 $path=explode("/", $_REQUEST['path']);
@@ -47,4 +48,4 @@ foreach($_REQUEST as $k=>$v) {
 }
 $param="?".implode("&", $param);
 
-print file_get_contents("http://vhost04.measurement.rtr.at:8080/geoserver/it.geosolutions/wms{$param}&BBOX={$bounds['x'][0]},{$bounds['y'][0]},{$bounds['x'][1]},{$bounds['y'][1]}&WIDTH=256&HEIGHT=256");
+print file_get_contents("{$wms_url}{$param}&BBOX={$bounds['x'][0]},{$bounds['y'][0]},{$bounds['x'][1]},{$bounds['y'][1]}&WIDTH=256&HEIGHT=256");
