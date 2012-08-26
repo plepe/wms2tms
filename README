@@ -4,7 +4,7 @@ You can add this layer to OpenLayers as:
 
     var layer = new OpenLayers.Layer.OSM(
             "Test Layer",
-	    "http://example.com/wms_to_tms/?foo=bar&path=${z}/${x}/${y}.png",
+	    "http://example.com/wms2tms/?foo=bar&path=${z}/${x}/${y}.png",
 	    { numZoomLevels: 19, isBaseLayer: false });
     map.addLayer(layer);
 
