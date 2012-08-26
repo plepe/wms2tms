@@ -26,4 +26,25 @@ $bounds=array(
   ),
 );
 
-print file_get_contents("http://vhost04.measurement.rtr.at:8080/geoserver/it.geosolutions/wms?LAYERS=it.geosolutions%3ABicycle%20Parking%20900913&STYLES=&FORMAT=image%2Fpng&TRANSPARENT=TRUE&TILED=true&TILESORIGIN=1805891.0815372%2C6126605.1261781&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&SRS=EPSG%3A900913&BBOX={$bounds['x'][0]},{$bounds['y'][0]},{$bounds['x'][1]},{$bounds['y'][1]}&WIDTH=256&HEIGHT=256");
+unset($_REQUEST['path']);
+
+if(!isset($_REQUEST['SERVICE']))
+  $_REQUEST['SERVICE']="WMS";
+if(!isset($_REQUEST['VERSION']))
+  $_REQUEST['VERSION']="1.1.1";
+if(!isset($_REQUEST['REQUEST']))
+  $_REQUEST['REQUEST']="GetMap";
+if(!isset($_REQUEST['SRS']))
+  $_REQUEST['SRS']="EPSG:900913";
+
+foreach($_REQUEST as $k=>$v) {
+  if(is_array($v)) {
+    $param[]=urlencode($k)."%5B%5D=".rawurlencode($v[0]);
+  }
+  else {
+    $param[]=urlencode($k)."=".rawurlencode($v);
+  }
+}
+$param="?".implode("&", $param);
+
+print file_get_contents("http://vhost04.measurement.rtr.at:8080/geoserver/it.geosolutions/wms{$param}&BBOX={$bounds['x'][0]},{$bounds['y'][0]},{$bounds['x'][1]},{$bounds['y'][1]}&WIDTH=256&HEIGHT=256");
