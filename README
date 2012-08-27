@@ -1,4 +1,5 @@
-This script shall be a simple wrapper from a WMS to TMS.
+Provides an OpenLayers.Layer.OSM() resp. OSMDroid compatible TMS on basis of a
+WMS service.
 
 You can add this layer to OpenLayers as:
 
@@ -8,4 +9,5 @@ You can add this layer to OpenLayers as:
 	    { numZoomLevels: 19, isBaseLayer: false });
     map.addLayer(layer);
 
-All parameters (save path) will be passed to the WMS.
+All parameters (save path which will be converted to bbox, width and height)
+will be passed to the WMS.
